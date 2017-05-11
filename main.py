@@ -25,7 +25,7 @@ def build_comparison(product):
 		global size_product_number
 		s=puma_shoe(product)
 		comparison_list.append(s)
-		shoe_prices[product]=s.return_price
+		shoe_prices[product]=s.return_price()
 		for i in s.return_sizes():
 			if(i in size_product_number.keys()):
 				l=size_product_number[i]
@@ -87,7 +87,7 @@ def main():
 	s=puma_shoe(product_number)
 
 		
-	shoe_prices[product_number]=s.return_price
+	shoe_prices[product_number]=s.return_price()
 	for i in s.return_sizes():
 		size_product_number[i]=[]
 		size_product_number[i].append(product_number)
@@ -129,8 +129,7 @@ def main():
 	
 			for key in shoe_prices:
 				if shoe_prices[key] <=usr_budget:
-					in_budget.add(key)
-			
+					in_budget.add(key)	
 			available=in_size.intersection(in_budget)
 			print("Shoes with product numbers: " + str(available)+ " are available in your size and are in your budget.")
 		elif(action == "c"):

@@ -111,7 +111,7 @@ def main():
 		elif(action == "h" and product_history==False):
 			print("Histories option not set in command line.")
 		elif(action == "i"):
-			res="(product number, sizes, price)="+str((s.product_number, s.return_sizes(),s.return_price()))
+			res="(product number, sizes, price,available colors)="+str((s.product_number, s.return_sizes(),s.return_price(),s.return_colors()))
 			print(res)
 		elif(action == "p"):
 			usr_size=input("What is your size?\n")
@@ -131,10 +131,16 @@ def main():
 				if shoe_prices[key] <=usr_budget:
 					in_budget.add(key)	
 			available=in_size.intersection(in_budget)
-			print("Shoes with product numbers: " + str(available)+ " are available in your size and are in your budget.")
+			if(len(available)>0):
+				print("Shoes with product numbers: " + str(available)+ " are available in your size and are in your budget.")
+			else:
+				print("Nothing available in your size or budget...")
 		elif(action == "c"):
-			for i in comparison_list:
-				print("(product number, sizes, price)="+str((i.product_number, i.return_sizes(),i.return_price())))
+			if(comparisons !=None):
+				for i in comparison_list:
+					print("(product number, sizes, price)="+str((i.product_number, i.return_sizes(),i.return_price())))
+			else:
+				print("No shoes to compare to")
 		elif(action=='q'):
 			exit(0)
 		else:
